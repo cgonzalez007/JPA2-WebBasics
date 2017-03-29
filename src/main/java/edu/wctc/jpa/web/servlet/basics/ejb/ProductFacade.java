@@ -27,6 +27,7 @@ public class ProductFacade extends AbstractFacade<Product> {
     public final int deleteById(String id){
         String jpql = "delete p from Product p where p.productId = :id";
         Query q = getEntityManager().createQuery(jpql);
+        q.setParameter("id", id);
         return q.executeUpdate();
     
 // If in cache, operation will not take so long. 
