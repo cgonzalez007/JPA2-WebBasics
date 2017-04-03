@@ -46,9 +46,11 @@
     <c:if test="${fn:length(products) > 0}">
         <table width="500" border="1" cellspacing="0" cellpadding="4">
             <tr style="background-color: black;">
+                <th align="left" style="color:white;"></th>
                 <th align="left" style="color:white;">Product Name</th>
                 <th align="left" style="color:white;">Price</th>
                 <th align="left" style="color:white;">Manufacturer</th>
+                <th align="left" style="color:white;">Manufacturer ID</th>
             </tr>
             <c:forEach var="p" items="${products}" varStatus="rowCount">
                 <c:choose>
@@ -59,9 +61,11 @@
                         <tr style="background-color: #ccffff;">
                     </c:otherwise>
                 </c:choose>
+                <td align="left">${p.productId}</td>            
                 <td align="left">${p.description}</td>
                 <td align="left">${p.purchaseCost}</td>
                 <td align="left">${p.manufacturerId.name}</td>
+                <td align="left">${p.manufacturerId.manufacturerId}</td>
             </tr>
             </c:forEach>
         </table>

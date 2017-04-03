@@ -16,6 +16,28 @@
     <body>
         <h2>Choose a JPA Database Operation</h2>
         <p><a href="FrontController?action=getAllMfgs">Get All Manufacturers</a></p>
+        <br>
         <p><a href="FrontController?action=getAllProducts">Get All Products</a></p>
+        <br>
+        <form id="deleteByIdForm" name="deleteByIdForm" method="POST" action="FrontController?action=deleteById">
+            <label for="productId">
+                Delete by Product ID
+            </label> 
+            <input type="number" id="productId" name="productId" value="">
+            <br>
+            <br>
+            <input type="submit" name="submit" value="submit">
+        </form>
+        <br>
+        <form id="findAllByManufacturerIdForm" name="findAllByManufacturerIdForm" method="POST" action="FrontController?action=findAllByManufacturerId">
+            <label for="manufacturerId">
+                Find all by Manufacturer ID
+            </label>    
+            <input type="number" id="manufacturerId" name="manufacturerId" value="">
+            <br>
+            <br>
+            <input type="submit" name="submit" value="submit">
+        </form>
+        <br>
     </body>
 </html>

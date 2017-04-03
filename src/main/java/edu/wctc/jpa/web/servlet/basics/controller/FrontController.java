@@ -52,14 +52,24 @@ public class FrontController extends HttpServlet {
         String destination = "/results.jsp";
         String action = request.getParameter("action");
         
-        if (action != null && action.equals("getAllMfgs")) {
+        if (action != null && action.equalsIgnoreCase("getAllMfgs")) {
             List<Manufacturer> mfgs = mfgService.findAll();
             request.setAttribute("mfgs", mfgs);
             
-        } else if(action != null && action.equals("getAllProducts")) {
+        } else if(action != null && action.equalsIgnoreCase("getAllProducts")) {
             List<Product> products = productService.findAll();
             request.setAttribute("products", products);
-        }
+        } else if (action !=null && action.equalsIgnoreCase("deleteById")){
+            String prodId = request.getParameter("productId");
+            productService.deleteById(prodId);
+            List<Product> products = productService.findAll();
+            request.setAttribute("products", products);
+        } else if (action !=null && action.equalsIgnoreCase("findAllByManufacturerId")){
+            String manufId = request.getParameter("manufacturerId");
+            productService.findAllByManufacturerId(manufId);
+            List<Product> products = productService.findAll();
+            request.setAttribute("products", products);
+        } 
         
         RequestDispatcher view =
                 request.getRequestDispatcher(destination);

@@ -2,10 +2,12 @@ package edu.wctc.jpa.web.servlet.basics.ejb;
 
 import edu.wctc.jpa.web.servlet.basics.model.Product;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * This class is an imlementation of the AbstractFacade, typed to handle
@@ -42,6 +44,16 @@ public class ProductFacade extends AbstractFacade<Product> {
         q.setParameter("id", id);
         return q.executeUpdate();
     }    
+    
+    public final List<Product> findAllByManufacturerId(String manufacturerId){
+        String jpql = "select p from Product p where p.manufacturerId.manufacturerId "
+                + "= :manufacturerId";
+        TypedQuery<Product> q = 
+                getEntityManager().createQuery(jpql, Product.class);
+        q.setParameter("manufacturerId", manufacturerId);
+        
+        return q.getResultList();
+    }
     
     public ProductFacade() {
         super(Product.class);
